@@ -1,0 +1,29 @@
+{% extends '_layout' %}
+{% set title = entry.title %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>{{ entry.title }}</h1>
+        </header>
+
+        <div>
+            <p>{{ entry.body }}</p>
+        </div>
+
+        {% set tags = entry.tags %}
+        {% if tags|length %}
+            <footer>
+                <ul>
+                    {% for tag in tags %}
+                        <li>
+                            <a href="{{ siteUrl }}tags/{{ tag.title | url_encode }}">
+                                {{ tag.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </footer>
+        {% endif %}
+    </article>
+{% endblock %}

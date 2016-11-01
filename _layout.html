@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+
+        <!-- form search -->
+        {% set query = craft.request.getParam('q') %}
+        <form action="{{ url('search/results') }}" method="get">
+            <input name="q" type="search" value="{{ query }}" placeholder="Search">
+            <button type="submit">Find</button>
+        </form>
+    </body>
+</html>

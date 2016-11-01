@@ -1,0 +1,22 @@
+{% extends '_layout' %}
+
+{% block content %}
+    <h1>Home</h1>
+
+    {% set entries = craft.entries.section('article').limit(10).find() %}
+    {% if entries|length %}
+        {% for entry in entries %}
+            <article>
+                <header>
+                    <h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
+                </header>
+
+                <div>
+                    <p>{{ entry.body|striptags|slice(0, 255) }}&hellip;</p>
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>There's no article.</p>
+    {% endif %}
+{% endblock %}
